@@ -25,4 +25,7 @@ namespace BigSchool.Controllers
             return View(viewModel);
         }
     }
+    [Authorize]
+    [HttpPost]
+
 }
