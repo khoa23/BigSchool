@@ -23,13 +23,13 @@
         <div class="details">
             <span class="lecturer">
                 @course.Lecturer.Name
-                <button class="btn btn-link btn-sm js-toggle-follow" data-user-id="@course.LecturerId">Follow</button>
+                @*<button class="btn btn-link btn-sm js-toggle-follow" data-user-id="@course.LecturerId">Follow</button>*@
             </span>
-
+            <br />
             <span class="category">
                 @course.Category.Name
             </span>
-            <button data-course-id="@course.Id" id="lolo" class="btn btn-default btn-sm js-toggle-attendance"> Going? </button>
+            @*<button data-course-id="@course.Id" id="lolo" class="btn btn-default btn-sm js-toggle-attendance"> Going? </button>*@
 
         </div>
 
@@ -44,26 +44,27 @@
 @section scripts
 {
     <script>
-        $(document).ready(function ()){
-            $(".js-cancel-course").click(function (e) {
+        $(document).ready(function(){
+            $(".js-cancel-course").click(function(e){
                 e.preventDefault();
-                var link = $(e.target);
-                bootbox.confirm("Are you sure to cancel?"),
-                    function () {
+                var link =$(e.target);
+                bootbox.confirm("Are you sure to cancel ?",
+                    function(){
                         $.ajax({
-                            url: "/api/courses/" + link.attr("data-course-id"), method: "DELETE"
+                            url :"/api/courses/"+link.attr("data-course-id"),
+                            method:"DELETE"
                         })
-                            .done(function ()){
-                            link.parents("li").fadeOut(function ()){
+                        .done(function(){
+                            link.parents("li").fadeOut(function(){
                                 $(this).remove();
                             });
-        })
-                        .fail(function () {
-                            alert("Somthing failed!");
+                        })
+                        .fail(function(){
+                            alert("Something failed !");
                         });
                     });
             });
         });
-    </script>   
+    </script>
 }
 
